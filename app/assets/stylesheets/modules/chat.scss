@@ -13,7 +13,7 @@
       }
       &__members {
         @include flexbox;
-        color: #999;
+        color: $light_gray;
         font-size: 12px;
         margin-top: 15px;
         .member {
@@ -47,7 +47,7 @@
           font-weight: bold;
         }
         &__date {
-          color: #999;
+          color: $light_gray;
           font-size: 12px;
           padding-left: 10px;
         }
