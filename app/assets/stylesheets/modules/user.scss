@@ -1,5 +1,6 @@
 .account-page {
   .account-page__inner {
+    box-sizing: border-box;
     width: 980px;
     margin: 60px auto;
     padding: 60px;
@@ -64,6 +65,7 @@
 
     .field-input {
       input {
+        box-sizing: border-box;
         width: 100%;
         padding: 10px;
         letter-spacing: 1px;
