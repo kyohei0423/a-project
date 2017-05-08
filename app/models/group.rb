@@ -6,6 +6,12 @@ class Group < ApplicationRecord
   validates :name, presence: true
 
   def show_last_message
-    messages.last.try(:body) || 'まだメッセージはありません。'
+    if messages.last.content.present?
+      massages.last.content
+    elsif messages.last.image.present?
+      '画像が投稿されています。'
+    else
+      'まだメッセージはありません。'
+    end
   end
 end
