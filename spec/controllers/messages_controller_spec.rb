@@ -3,7 +3,7 @@ require 'rails_helper'
 describe MessagesController do
   let(:group) { create(:group) }
   let(:user) { create(:user) }
-  let(:messages) { create_list :message, 5, group_id: group.id, user_id: user.id }
+  let!(:messages) { create_list :message, 5, group_id: group.id, user_id: user.id }
 
   describe '#index' do
     let(:params) { { group_id: group.id } }
@@ -19,7 +19,7 @@ describe MessagesController do
       end
 
       it 'assigns @messages' do
-        expect(assigns(:messages)).to eq messages
+        expect(assigns(group.messages)).to eq messages
       end
 
       it 'assigns @group' do
