@@ -10,7 +10,7 @@ describe MessagesController do
 
     context 'log in' do
       before do
-        login_user user
+        login user
         get :index, params: { group_id: group.id }
       end
 
@@ -55,7 +55,7 @@ describe MessagesController do
 
     context 'log in' do
       before do
-        login_user user
+        login user
       end
 
       context 'can save' do
