@@ -75,16 +75,16 @@ describe MessagesController do
       end
 
       context 'can not save' do
-        let(:lack_params) { { group_id: group.id, user_id: user.id, message: attributes_for(:message, content: nil, image: nil) } }
+        let(:invalid_params) { { group_id: group.id, user_id: user.id, message: attributes_for(:message, content: nil, image: nil) } }
 
         subject {
           post :create,
-          params: lack_params
+          params: invalid_params
         }
 
         it 'does not count up' do
           expect{
-            post :create, params: lack_params
+            post :create, params: invalid_params
           }.not_to change(Message, :count)
         end
 
