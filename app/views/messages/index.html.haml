@@ -14,13 +14,13 @@
               = user.name
       .right-header
         = link_to 'Edit', edit_group_path(@group), class: 'right-header__button'
-    .messages
+    .messages.js-messages
       = render @messages
     .form
-      = form_for [@group, @message] do |f|
-        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+      = form_for [@group, @message], html: { class: 'js-form' } do |f|
+        = f.text_field :content, class: 'form__message js-content', placeholder: 'type a message'
         .form__mask
           = f.label :image, class: 'form__mask__image' do
             = fa_icon 'picture-o', class: 'icon'
-            = f.file_field :image, class: 'hidden'
+            = f.file_field :image, class: 'hidden js-file'
         = f.submit 'Send', class: 'form__submit'
