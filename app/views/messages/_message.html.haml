@@ -4,7 +4,7 @@
       = message.user.name
     .upper-message__date
       = format_posted_time(message.created_at)
-  .lower-meesage
+  .lower-message
     - if message.content.present?
       %p.lower-message__content
         = message.content
