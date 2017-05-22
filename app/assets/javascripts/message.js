@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('ready turbolinks:load', function() {
   var buildMessageHTML = function(message) {
     if (message.content && message.image.url) {
       var html = '<div class="message">' +
