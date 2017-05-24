@@ -1,10 +1,10 @@
-$(document).on('ready turbolinks:load', function() {
+$(function() {
   var buildMessageHTML = function(message) {
     if (message.content && message.image.url) {
       var html = '<div class="message">' +
         '<div class="upper-message">' +
           '<div class="upper-message__user-name">' +
-            message.name +
+            message.user_name +
           '</div>' +
           '<div class="upper-message__date">' +
             message.created_at +
@@ -21,7 +21,7 @@ $(document).on('ready turbolinks:load', function() {
       var html = '<div class="message">' +
         '<div class="upper-message">' +
           '<div class="upper-message__user-name">' +
-            message.name +
+            message.user_name +
           '</div>' +
           '<div class="upper-message__date">' +
             message.created_at +
@@ -37,7 +37,7 @@ $(document).on('ready turbolinks:load', function() {
       var html = '<div class="message">' +
         '<div class="upper-message">' +
           '<div class="upper-message__user-name">' +
-            message.name +
+            message.user_name +
           '</div>' +
           '<div class="upper-message__date">' +
             message.created_at +
@@ -51,7 +51,29 @@ $(document).on('ready turbolinks:load', function() {
     return html;
   };
 
-  $('.js-form').on('submit', function(e) {
+  var reloadMessages = function() {
+    $.ajax({
+      url: location.href,
+      type: 'GET',
+      dataType: 'json'
+    })
+    .done(function(messages) {
+      console.log('hoge');
+      var insertHTML = '';
+      messages.forEach(function(message) {
+        insertHTML += buildMessageHTML(message);
+      });
+      var $messages = $('.js-messages');
+      $messages.empty();
+      $messages.append(insertHTML);
+      $messages.animate({scrollTop: $messages[0].scrollHeight}, 2000);
+    })
+    .fail(function() {
+      console.log('error');
+    });
+  };
+
+  $('.js-form').unbind('submit').bind('submit', function(e) {
     e.preventDefault();
     var $form = $(this);
     var formData = new FormData(this);
@@ -77,4 +99,6 @@ $(document).on('ready turbolinks:load', function() {
       $('.form__submit').prop('disabled', false);
     });
   });
+
+  setInterval(reloadMessages, 7000);
 });
