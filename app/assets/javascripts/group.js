@@ -1,4 +1,4 @@
-$(document).on('ready turbolinks:load', function() {
+$(function() {
   var buildSearchedUserHTML = function(user) {
     var html = '<div class="chat-group-user clearfix">' +
       '<p class="chat-group-user__name">' +
@@ -34,6 +34,7 @@ $(document).on('ready turbolinks:load', function() {
       users.forEach(function(user){
         insertHTML += buildSearchedUserHTML(user);
       });
+      $('.js-user-seaerch-result').empty();
       $('.js-user-seaerch-result').append(insertHTML);
     })
     .fail(function() {
