@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  def index
+    @users = User.where('name LIKE(?)', "%#{params[:name]}%")
+    render formats: 'json', handlers: 'jbuilder'
+  end
+
   def edit
   end
 
